@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorGreyF3">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-6dp"
+        android:elevation="4dp"
+        android:indeterminate="true"
+        android:indeterminateOnly="true"
+        android:theme="@style/HorizontalProgress"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:targetApi="LOLLIPOP"
+        tools:visibility="visible" />
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        app:elevation="0dp">
+
+        <android.support.design.widget.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:contentScrim="@color/colorPrimary"
+            app:expandedTitleMarginEnd="64dp"
+            app:expandedTitleMarginStart="48dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="16dp"
+                android:paddingTop="64dp">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/cardSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginStart="16dp"
+                    app:cardCornerRadius="4dp"
+                    app:cardElevation="4dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingEnd="16dp"
+                        android:paddingStart="16dp">
+
+                        <EditText
+                            android:id="@+id/inputSearchTag"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="16dp"
+                            android:background="@android:color/transparent"
+                            android:fontFamily="@font/font_opensans"
+                            android:hint="@string/hint_search_by_tag"
+                            android:maxLines="1"
+                            android:padding="16dp"
+                            android:textSize="14sp"
+                            app:layout_constraintEnd_toStartOf="@id/imageSearch"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/imageSearch"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/ic_search_primary_24dp" />
+                    </android.support.constraint.ConstraintLayout>
+                </android.support.v7.widget.CardView>
+
+                <TextView
+                    android:id="@+id/textPerPage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/font_opensans"
+                    android:paddingTop="8dp"
+                    android:text="@string/text_search_per_page"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="@id/imageDropdownPerPage"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/imageDropdownPerPage" />
+
+                <TextView
+                    android:id="@+id/textPerPageResult"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/font_opensans_semibold"
+                    android:gravity="end"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="@id/imageDropdownPerPage"
+                    app:layout_constraintEnd_toStartOf="@id/imageDropdownPerPage"
+                    app:layout_constraintStart_toEndOf="@id/textPerPage"
+                    app:layout_constraintTop_toTopOf="@id/imageDropdownPerPage"
+                    tools:text="20" />
+
+                <ImageView
+                    android:id="@+id/imageDropdownPerPage"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="28dp"
+                    android:layout_marginTop="8dp"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/cardSearch"
+                    app:srcCompat="@drawable/ic_arrow_drop_down_white_24dp" />
+
+                <TextView
+                    android:id="@+id/textFrom"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/font_opensans"
+                    android:text="@string/text_search_from"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="@id/imageDropdownFrom"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/imageDropdownFrom" />
+
+                <TextView
+                    android:id="@+id/textFromResult"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/font_opensans_semibold"
+                    android:gravity="end"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="@id/imageDropdownFrom"
+                    app:layout_constraintEnd_toStartOf="@id/imageDropdownFrom"
+                    app:layout_constraintStart_toEndOf="@id/textFrom"
+                    app:layout_constraintTop_toTopOf="@id/imageDropdownFrom"
+                    tools:text="23 Maret 2018" />
+
+                <ImageView
+                    android:id="@+id/imageDropdownFrom"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="28dp"
+                    android:layout_marginTop="8dp"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imageDropdownPerPage"
+                    app:srcCompat="@drawable/ic_date_range_white_24dp" />
+
+                <TextView
+                    android:id="@+id/textTo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:fontFamily="@font/font_opensans"
+                    android:text="@string/text_search_to"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="@id/imageDropdownTo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/imageDropdownTo" />
+
+                <TextView
+                    android:id="@+id/textToResult"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/font_opensans_semibold"
+                    android:gravity="end"
+                    android:paddingBottom="8dp"
+                    android:paddingTop="8dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    android:visibility="visible"
+                    app:layout_constraintBottom_toBottomOf="@id/imageDropdownTo"
+                    app:layout_constraintEnd_toStartOf="@id/imageDropdownTo"
+                    app:layout_constraintStart_toEndOf="@id/textTo"
+                    app:layout_constraintTop_toTopOf="@id/imageDropdownTo"
+                    tools:text="23 Maret 2018" />
+
+                <ImageView
+                    android:id="@+id/imageDropdownTo"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="28dp"
+                    android:layout_marginTop="8dp"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/imageDropdownFrom"
+                    app:srcCompat="@drawable/ic_date_range_white_24dp" />
+            </android.support.constraint.ConstraintLayout>
+
+            <include
+                android:id="@+id/layoutToolbarDefault"
+                layout="@layout/layout_toolbar_default"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewArticle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fadeScrollbars="false"
+        android:overScrollMode="never"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
+        android:scrollbars="none"
+        android:verticalScrollbarPosition="right"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+</android.support.design.widget.CoordinatorLayout>

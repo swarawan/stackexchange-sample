@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="okhttp_log_level">BODY</string>
+    <string name="server_url">http://apps.kajianmu.id/</string>
+    <string name="static_token">eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3RcL2thamlhbm11IiwiaWF0IjoxNTI1MzMyMzk3LCJuYmYiOjE1MjUzMzIzOTcsImV4cCI6MTUyNTkzNzE5NywiZGF0YSI6eyJ1c2VyIjp7ImlkIjoiOSJ9fX0.wNQ-euiaux1ZUC4pZcGRYMiQRlJvzteLQ5KcnupqzPcx</string>
+</resources>

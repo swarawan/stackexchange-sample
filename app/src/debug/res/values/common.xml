@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="okhttp_log_level">BODY</string>
+    <string name="server_url">https://api.stackexchange.com/2.2/</string>
+</resources>

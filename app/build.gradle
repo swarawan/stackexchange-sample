@@ -1,0 +1,137 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+if (new File('sign.gradle').exists()) {
+    apply from: '../sign.gradle'
+}
+
+ext.majorVersion = 1
+ext.minorVersion = 0
+ext.patchVersion = 0
+ext.preRelease = ""
+
+android {
+    compileSdkVersion project.ext.compiledSdkVersion
+    buildToolsVersion project.ext.buildToolVersion
+    defaultConfig {
+        applicationId "com.swarawan.tlaboverflow"
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion project.ext.targetSdkVersion
+        versionCode generateVersionCode()
+        versionName generateVersionName()
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        debug {
+            testCoverageEnabled = true
+            minifyEnabled false
+            debuggable true
+            signingConfig signingConfigs.debug
+        }
+        release {
+            debuggable false
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
+            crunchPngs true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+    flavorDimensions "env"
+    productFlavors {
+        dev {
+            dimension "env"
+            applicationId "com.swarawan.tlaboverflow.dev"
+        }
+        production {
+            dimension "env"
+            applicationId "com.swarawan.tlaboverflow"
+        }
+    }
+
+    lintOptions {
+        abortOnError true
+        warning 'InvalidPackage', 'MissingPermission', 'AppCompatResource'
+    }
+    dexOptions {
+        preDexLibraries = false
+        jumboMode true
+    }
+    packagingOptions {
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/ASL2.0'
+    }
+    allprojects {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
+        }
+    }
+    androidExtensions {
+        experimental = true
+    }
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "TLabOverflow-${variant.versionName}-${variant.flavorName}-${variant.buildType.name}-${generateUniqueId()}.apk"
+        }
+    }
+}
+
+apply from: '../variant_filter.gradle'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation("com.github.swarawan:corelibrary:0.0.8") {
+        transitive = true
+        changing = true
+    }
+
+    // Support
+    implementation supportDependencies.appCompat
+    implementation supportDependencies.constrainLayout
+    implementation supportDependencies.recyclerView
+    implementation supportDependencies.cardView
+    implementation supportDependencies.support
+    implementation supportDependencies.design
+
+    // Reactive
+    implementation libraries.rxBindingPlatformKotlin
+    implementation libraries.rxBindingSupportKotlin
+
+    // Dagger
+    implementation libraries.dagger
+    kapt libraries.daggerCompiler
+
+    // Test
+    debugImplementation libraries.debugLeakCanary
+    releaseImplementation libraries.releaseLeakCanary
+    androidTestImplementation(testSupportDependencies.espressoCore, {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+}
+
+private Integer generateVersionCode() {
+    return project.ext.minSdkVersion * 10000000 + ext.majorVersion * 10000 + ext.minorVersion * 100 + ext.patchVersion
+}
+
+private String generateVersionName() {
+    String versionName = "${ext.majorVersion}.${ext.minorVersion}.${ext.patchVersion}"
+    if (ext.preRelease != null && !ext.preRelease.isEmpty()) {
+        versionName = versionName + "-" + ext.preRelease
+    }
+    return versionName
+}
+
+private String generateUniqueId() {
+    String uniqueId = UUID.randomUUID()
+    return uniqueId.replace("-", "").substring(0, 9)
+}

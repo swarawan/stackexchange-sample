@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">TLabOverflow</string>
+
+    <string name="hint_search_by_tag">Search by tag…</string>
+
+    <string name="text_yes">Ya</string>
+    <string name="text_done">Done</string>
+    <string name="text_show_search_advance">Show Advance Search</string>
+    <string name="text_hide_search_advance">Hide Advance Search</string>
+    <string name="text_message_dialog_no_connection">Anda tidak terhubung internet. Coba lagi?</string>
+    <string name="text_message_dialog_failed_data">Data gagal dimuat</string>
+    <string name="text_search_from">From</string>
+    <string name="text_search_to">To</string>
+    <string name="text_search_per_page">Per Page</string>
+</resources>
